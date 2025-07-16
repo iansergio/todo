@@ -27,7 +27,10 @@ public class TaskController {
     // GET: Listar tarefas por ID
     @GetMapping("/{id}")
     public Task getTaskById(@PathVariable Long id) {
-        return tasks.stream().filter(task -> task.getId().equals(id)).findFirst().orElseThrow(() -> new RuntimeException("Tarefa não encontrada!"));
+        return tasks.stream().filter(task -> task.getId()
+                .equals(id))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Tarefa não encontrada!"));
     }
 
     // POST: Criar uma tarefa
@@ -37,5 +40,6 @@ public class TaskController {
         tasks.add(task);
         return task;
     }
+
 
 }
