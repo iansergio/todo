@@ -19,30 +19,30 @@ public class TodoController {
     }
 
     @PostMapping
-    public ResponseEntity<Todo> insertTodo(@RequestBody Todo todo) {
-        Todo savedTodo = todoService.insertTodo(todo);
+    public ResponseEntity<Todo> save(@RequestBody Todo todo) {
+        Todo savedTodo = todoService.save(todo);
         URI location = URI.create("/api/todos/" + savedTodo.getId());
         return ResponseEntity.created(location).body(savedTodo);
     }
 
     @GetMapping
-    public ResponseEntity<List<Todo>> getTodos() {
-        return ResponseEntity.ok(todoService.getTodos());
+    public ResponseEntity<List<Todo>> getAll() {
+        return ResponseEntity.ok(todoService.getAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Todo> getTodoById(@PathVariable Long id) {
-        return ResponseEntity.ok(todoService.getTodoById(id));
+    public ResponseEntity<Todo> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(todoService.getById(id));
     }
 
     @PutMapping
-    public ResponseEntity<Todo> updateTodo(@RequestBody Todo todo) {
-        return ResponseEntity.ok(todoService.updateTodo(todo));
+    public ResponseEntity<Todo> update(@RequestBody Todo todo) {
+        return ResponseEntity.ok(todoService.update(todo));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTodo(@PathVariable Long id) {
-        todoService.deleteTodo(id);
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        todoService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
