@@ -1,7 +1,8 @@
-package api.todo.service;
+package api.todo.service.impl;
 
 import api.todo.entity.Todo;
 import api.todo.repository.TodoRepository;
+import api.todo.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
