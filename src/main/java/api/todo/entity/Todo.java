@@ -1,6 +1,7 @@
 package api.todo.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "todos")
@@ -9,6 +10,8 @@ public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Todo name is required")
     private String name;
     private String description;
     private boolean completed;
@@ -55,4 +58,8 @@ public class Todo {
     public void setPriority(int priority) {
         this.priority = priority;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }

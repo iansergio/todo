@@ -2,6 +2,7 @@ package api.todo.controller;
 
 import api.todo.entity.Todo;
 import api.todo.service.TodoService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class TodoController {
     }
 
     @PostMapping
-    public ResponseEntity<Todo> save(@RequestBody Todo todo) {
+    public ResponseEntity<Todo> save(@Valid @RequestBody Todo todo) {
         Todo savedTodo = todoService.save(todo);
         URI location = URI.create("/api/todos/" + savedTodo.getId());
         return ResponseEntity.created(location).body(savedTodo);
@@ -36,7 +37,7 @@ public class TodoController {
     }
 
     @PutMapping
-    public ResponseEntity<Todo> update(@RequestBody Todo todo) {
+    public ResponseEntity<Todo> update(@Valid @RequestBody Todo todo) {
         return ResponseEntity.ok(todoService.update(todo));
     }
 
